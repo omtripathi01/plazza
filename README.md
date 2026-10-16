@@ -11,7 +11,7 @@ Medicines delivered in minutes — a React Native (Android) take-home app: permi
 
 ## Download the APK
 
-Debug builds that run without Metro. Pick the one for your device's CPU:
+Debug builds that run without Metro. Needs Android 13 or newer. Pick the one for your device's CPU:
 
 | Device | File |
 |---|---|
@@ -43,7 +43,7 @@ See [NOTES.md](NOTES.md) for the tech stack and the full functionality list.
 
 ## Run locally
 
-Requirements: Node 18+, JDK 17, Android SDK with an emulator (API 33+) or a device.
+Requirements: Node 18+, JDK 17, Android SDK with an emulator or device on **Android 13+ (API 33)**. The app's `minSdkVersion` is 33, `targetSdkVersion` 35.
 
 ```bash
 npm install

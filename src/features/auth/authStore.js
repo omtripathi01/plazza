@@ -2,8 +2,9 @@
 // A user can also continue as guest; guests can browse and fill the cart but must log in to place an order.
 import {create} from 'zustand';
 import {KEYS, loadData, saveData} from '../../shared/storage/storage';
+import {MOCK_PASSWORD, digitsOnly, isValid, validateLogin} from './validation';
 
-export const MOCK_PASSWORD = '1111';
+export {MOCK_PASSWORD};
 
 export const useAuthStore = create((set, get) => ({
   user: null, // { name, phone }
@@ -24,20 +25,13 @@ export const useAuthStore = create((set, get) => ({
     saveData(KEYS.auth, {user, guest});
   },
 
-  // Returns { ok: true } or { ok: false, reason }.
+  // Returns { ok: true } or { ok: false, errors, reason } where errors has one message per field.
   login: (name, phone, password) => {
-    const cleanName = (name || '').trim();
-    const cleanPhone = (phone || '').trim();
-    if (!cleanName) {
-      return {ok: false, reason: 'Enter your name'};
+    const errors = validateLogin({name, phone, password});
+    if (!isValid(errors)) {
+      return {ok: false, errors, reason: Object.values(errors)[0]};
     }
-    if (cleanPhone.length < 10) {
-      return {ok: false, reason: 'Enter a 10 digit phone number'};
-    }
-    if (password !== MOCK_PASSWORD) {
-      return {ok: false, reason: 'Wrong password (hint: 1111)'};
-    }
-    set({user: {name: cleanName, phone: cleanPhone}, guest: false});
+    set({user: {name: name.trim(), phone: digitsOnly(phone)}, guest: false});
     get().persist();
     return {ok: true};
   },

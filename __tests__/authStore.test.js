@@ -11,10 +11,12 @@ describe('authStore', () => {
     const {login} = useAuthStore.getState();
     expect(login('', '9876543210', '1111').ok).toBe(false);
     expect(login('Om', '98765', '1111').ok).toBe(false);
-    expect(login('Om', '9876543210', '0000')).toEqual({
-      ok: false,
-      reason: 'Wrong password (hint: 1111)',
-    });
+    const wrong = login('Om', '9876543210', '0000');
+    expect(wrong.ok).toBe(false);
+    expect(wrong.errors.password).toBe(
+      'Incorrect password. Use 1111 for this demo',
+    );
+    expect(wrong.reason).toBe('Incorrect password. Use 1111 for this demo');
     expect(useAuthStore.getState().user).toBeNull();
   });
 

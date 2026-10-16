@@ -53,13 +53,15 @@ export const usePermissionStore = create((set, get) => ({
     if (Platform.OS !== 'android') {
       return;
     }
-    const prev = get();
     const loc = await checkMultiple([FINE, COARSE]);
+    const notif = await checkNotifications();
+    // Read the last known status only now: a request() that just finished may have set "blocked"
+    // while we were awaiting, and check() alone can never report "blocked" on Android.
+    const prev = get();
     const location = resolveStatus(
       locationStatusFrom(loc[FINE], loc[COARSE]),
       prev.location,
     );
-    const notif = await checkNotifications();
     const notifications = resolveStatus(notif.status, prev.notifications);
     set({location, notifications});
     get().persist();

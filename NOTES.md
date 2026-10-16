@@ -4,6 +4,7 @@
 
 | Layer | Choice |
 |---|---|
+| Platform | Android only, `minSdkVersion` 33 (Android 13+), `targetSdkVersion` 35 |
 | Framework | React Native 0.79.7 (bare CLI), React 19, New Architecture (Fabric) on, Hermes, JavaScript |
 | Navigation | `@react-navigation/native` 7 + `@react-navigation/bottom-tabs` 7, `react-native-screens`, `react-native-safe-area-context` |
 | State | `zustand` 5 — one small store per feature (cart, search, permissions, auth, theme) |

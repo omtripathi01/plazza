@@ -9,6 +9,7 @@ export default function Input({
   label,
   icon,
   onClear,
+  error,
   style,
   inputStyle,
   ...props
@@ -19,7 +20,7 @@ export default function Input({
   return (
     <View style={style}>
       {label ? <AppText style={styles.label}>{label}</AppText> : null}
-      <View style={styles.row}>
+      <View style={[styles.row, error && styles.rowError]}>
         {icon ? <AppText style={styles.icon}>{icon}</AppText> : null}
         <TextInput
           placeholderTextColor={colors.muted}
@@ -41,6 +42,14 @@ export default function Input({
           </Pressable>
         ) : null}
       </View>
+      {error ? (
+        <AppText
+          variant="tiny"
+          style={styles.error}
+          accessibilityLiveRegion="polite">
+          {error}
+        </AppText>
+      ) : null}
     </View>
   );
 }
@@ -62,6 +71,8 @@ function getStyles(colors) {
       paddingHorizontal: spacing.md,
       minHeight: minButtonHeight,
     },
+    rowError: {borderColor: colors.danger},
+    error: {color: colors.danger, marginTop: spacing.xs},
     icon: {fontSize: fontSize.body, marginRight: spacing.sm},
     input: {
       flex: 1,

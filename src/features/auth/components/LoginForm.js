@@ -1,10 +1,11 @@
-// Name + phone + password form. Used by the Login screen and by the login prompt in the cart.
+// Name + phone + password form with per-field validation. Used by the Login screen and the cart prompt.
 import React, {useMemo, useState} from 'react';
 import {StyleSheet} from 'react-native';
-import {AppText, Button, Input} from '../../../shared/components';
+import {Button, Input} from '../../../shared/components';
 import {useAuthStore} from '../authStore';
+import {digitsOnly} from '../validation';
 import {useColors} from '../../../shared/theme/themeStore';
-import {fontSize, spacing} from '../../../shared/theme/theme';
+import {spacing} from '../../../shared/theme/theme';
 
 export default function LoginForm({onSuccess}) {
   const colors = useColors();
@@ -14,14 +15,28 @@ export default function LoginForm({onSuccess}) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState({});
+
+  // Clear a field's error as soon as the user edits it.
+  function update(field, setter) {
+    return value => {
+      setter(field === 'phone' ? digitsOnly(value) : value);
+      if (errors[field]) {
+        setErrors({...errors, [field]: undefined});
+      }
+    };
+  }
 
   function onLogin() {
     const result = login(name, phone, password);
-    setError(result.ok ? '' : result.reason);
-    if (result.ok && onSuccess) {
-      onSuccess();
+    if (result.ok) {
+      setErrors({});
+      if (onSuccess) {
+        onSuccess();
+      }
+      return;
     }
+    setErrors(result.errors);
   }
 
   return (
@@ -29,31 +44,34 @@ export default function LoginForm({onSuccess}) {
       <Input
         label="Name"
         value={name}
-        onChangeText={setName}
+        onChangeText={update('name', setName)}
         placeholder="Your name"
+        autoCapitalize="words"
+        error={errors.name}
         style={styles.field}
       />
       <Input
         label="Phone"
         value={phone}
-        onChangeText={setPhone}
+        onChangeText={update('phone', setPhone)}
         placeholder="10 digit mobile number"
-        keyboardType="phone-pad"
+        keyboardType="number-pad"
         maxLength={10}
+        error={errors.phone}
         style={styles.field}
       />
       <Input
         label="Password"
         value={password}
-        onChangeText={setPassword}
+        onChangeText={update('password', setPassword)}
         placeholder="Hint: 1111"
         secureTextEntry
         keyboardType="number-pad"
         maxLength={4}
         onSubmitEditing={onLogin}
+        error={errors.password}
         style={styles.field}
       />
-      {error ? <AppText style={styles.error}>{error}</AppText> : null}
       <Button
         title="Log in"
         onPress={onLogin}
@@ -64,14 +82,9 @@ export default function LoginForm({onSuccess}) {
   );
 }
 
-function getStyles(colors) {
+function getStyles() {
   return StyleSheet.create({
     field: {marginTop: spacing.sm},
-    error: {
-      color: colors.danger,
-      fontSize: fontSize.small,
-      marginTop: spacing.sm,
-    },
     button: {marginTop: spacing.lg},
   });
 }
