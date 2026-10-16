@@ -1,0 +1,168 @@
+{
+  "medicines": [
+    {
+      "id": "m1",
+      "name": "Dolo 650",
+      "salt": "Paracetamol",
+      "price": 30,
+      "maxQty": 5,
+      "rx": false,
+      "description": "Paracetamol 650 mg tablet for fever and mild to moderate pain. Take after food, max 4 doses a day."
+    },
+    {
+      "id": "m2",
+      "name": "Crocin Advance",
+      "salt": "Paracetamol",
+      "price": 45,
+      "maxQty": 5,
+      "rx": false,
+      "description": "Fast-acting paracetamol 500 mg for headache, body ache and fever. Suitable for adults and children over 12."
+    },
+    {
+      "id": "m3",
+      "name": "Azithral 500",
+      "salt": "Azithromycin",
+      "price": 120,
+      "maxQty": 2,
+      "rx": true,
+      "description": "Azithromycin 500 mg antibiotic for bacterial infections of the throat, chest and skin. Prescription required."
+    },
+    {
+      "id": "m4",
+      "name": "Pan 40",
+      "salt": "Pantoprazole",
+      "price": 150,
+      "maxQty": 3,
+      "rx": true,
+      "description": "Pantoprazole 40 mg reduces stomach acid. Used for acidity, GERD and ulcers. Take before breakfast."
+    },
+    {
+      "id": "m5",
+      "name": "Cetrizine",
+      "salt": "Cetirizine",
+      "price": 25,
+      "maxQty": 10,
+      "rx": false,
+      "description": "Cetirizine 10 mg antihistamine for sneezing, runny nose and allergies. May cause mild drowsiness."
+    },
+    {
+      "id": "m6",
+      "name": "Allegra 120",
+      "salt": "Fexofenadine",
+      "price": 180,
+      "maxQty": 3,
+      "rx": false,
+      "description": "Fexofenadine 120 mg non-drowsy antihistamine for seasonal allergies and hives."
+    },
+    {
+      "id": "m7",
+      "name": "Calpol 500",
+      "salt": "Paracetamol",
+      "price": 20,
+      "maxQty": 5,
+      "rx": false,
+      "description": "Paracetamol 500 mg for fever and pain relief. Gentle on the stomach, suitable for the whole family."
+    },
+    {
+      "id": "m8",
+      "name": "Augmentin 625",
+      "salt": "Amoxicillin",
+      "price": 200,
+      "maxQty": 2,
+      "rx": true,
+      "description": "Amoxicillin + clavulanic acid antibiotic for ear, sinus, chest and urinary infections. Prescription required."
+    },
+    {
+      "id": "m9",
+      "name": "Digene Gel",
+      "salt": "Magnesium Hydroxide",
+      "price": 110,
+      "maxQty": 4,
+      "rx": false,
+      "description": "Antacid gel with magnesium hydroxide for quick relief from acidity, heartburn and gas."
+    },
+    {
+      "id": "m10",
+      "name": "Volini Spray",
+      "salt": "Diclofenac",
+      "price": 140,
+      "maxQty": 2,
+      "rx": false,
+      "description": "Diclofenac pain-relief spray for muscle sprains, back pain and joint pain. For external use only."
+    },
+    {
+      "id": "m11",
+      "name": "Honitus Syrup",
+      "salt": "Herbal Cough Formula",
+      "price": 95,
+      "maxQty": 3,
+      "rx": false,
+      "description": "Ayurvedic herbal cough syrup with honey and tulsi for dry and wet cough."
+    },
+    {
+      "id": "m12",
+      "name": "Cheston Cold",
+      "salt": "Cetirizine/Paracetamol",
+      "price": 40,
+      "maxQty": 5,
+      "rx": false,
+      "description": "Combination of cetirizine and paracetamol for cold, blocked nose and body ache."
+    },
+    {
+      "id": "m13",
+      "name": "Vicks Vaporub",
+      "salt": "Menthol/Camphor",
+      "price": 85,
+      "maxQty": 4,
+      "rx": false,
+      "description": "Menthol and camphor balm for nasal congestion, cough and muscle aches. Rub on chest and throat."
+    },
+    {
+      "id": "m14",
+      "name": "Saridon",
+      "salt": "Propyphenazone",
+      "price": 35,
+      "maxQty": 5,
+      "rx": false,
+      "description": "Propyphenazone-based tablet for fast headache relief. Do not exceed 3 tablets a day."
+    },
+    {
+      "id": "m15",
+      "name": "Shelcal 500",
+      "salt": "Calcium/Vitamin D3",
+      "price": 115,
+      "maxQty": 3,
+      "rx": false,
+      "description": "Calcium carbonate with vitamin D3 for bone strength. One tablet daily after a meal."
+    }
+  ],
+  "coupons": [
+    {
+      "code": "FLAT50",
+      "description": "₹50 off on item total of ₹300 or more",
+      "type": "flat",
+      "amount": 50,
+      "minItemTotal": 300
+    },
+    {
+      "code": "SAVE10",
+      "description": "10% off, up to ₹100",
+      "type": "percent",
+      "percent": 10,
+      "maxDiscount": 100
+    },
+    {
+      "code": "FREEDEL",
+      "description": "Free delivery",
+      "type": "freeDelivery"
+    },
+    {
+      "code": "FIRST100",
+      "description": "₹100 off your first order (min ₹200)",
+      "type": "flat",
+      "amount": 100,
+      "minItemTotal": 200,
+      "oneTimeUse": true
+    }
+  ]
+}
